@@ -1,43 +1,92 @@
 #include "fractal_serial.h"
 #include <complex>
-#include <cstdint>
-// variables externas
-extern int max_iterations ; // viene de main
+extern int max_iteraciones;
 extern std::complex<double> c;
-
-int acotado_1(std::complex<double> z0){
-     int iter = 1;
+uint32_t acotado_1(std::complex<double> z0)
+{
+    /*
+    dados: c,zo
+    Zn+1 = Zn^2 + c
+    */
+    int iter = 1;
     std::complex<double> z = z0;
-    while (std::abs(z) < 2.0 && iter < max_iterations ) // en laximo de iteraciones viene de main
+    while (iter < max_iteraciones && std::abs(z) <= 2.0)
     {
+        // Zn+1 = Zn^2 + c
         z = z * z + c;
         iter++;
     }
-    if (iter < max_iterations ){
-        return 0xFF0000FF;    
+    if (iter < max_iteraciones)
+    {
+        // la norma > 2
+        return 0xFF0000FF; // Rojo
     }
-    return 0xFF000000;
+    return 0xFF000000; // Negro
 }
 
-void julia_serial1(double x_min, double y_min, double x_max,
-                   double y_max, uint32_t width, uint32_t height, uint32_t *pixel_buffer)
+void julia_serial1(double x_min, double x_max, double y_min, double y_max, uint32_t width, uint32_t height, uint32_t *pixel_buffer)
 {
-
-    double dx = (x_max - x_min) / (width);
-    double dy = (y_max - y_min) / (height);
-
+    double dx = (x_max - x_min) / width;
+    double dy = (y_max - y_min) / height;
     for (int i = 0; i < width; i++)
     {
         for (int j = 0; j < height; j++)
         {
+            // z = x+yi = (x,y)
             double x = x_min + i * dx;
-            double y = y_min + j * dy;
+            double y = y_max - j * dy;
+            std::complex<double> z(x, y);
+            auto color = acotado_1(z);
+            pixel_buffer[i + j * width] = color;
+        }
+    }
+}
 
-            std::complex<double> z(x, y); /// nuestro punto complejo
+uint32_t acotado_2(double x, double y)
+{
+    /*
+    dados: c,zo
+    Zn+1 = Zn^2 + c
+    */
+    int iter = 1;
 
-            auto color = acotado_1(z); // auto es igual a var --> inferencia de tipos
+    double zr = x;
+    double zi = y;
 
-            pixel_buffer[j * width + i] = color; // asignamos el color al pixel
+    while (iter < max_iteraciones && std::abs(zr * zr + zi * zr) <= 4.0)
+    {
+        // Zn+1 = Zn^2 + c
+
+        double dr = zr * zr - zi * zi + c.real();
+        double di = 2.0 * zr * zi + c.imag();
+
+        zr = dr;
+        zi = di;
+
+        iter++;
+    }
+    if (iter < max_iteraciones)
+    {
+        // la norma > 2
+        return 0xFF0000FF; // Rojo
+    }
+    return 0xFF000000; // Negro
+}
+
+void julia_serial2(double x_min, double x_max, double y_min, double y_max, uint32_t width, uint32_t height, uint32_t *pixel_buffer)
+{
+    double dx = (x_max - x_min) / width;
+    double dy = (y_max - y_min) / height;
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
+        {
+            // z = x+yi = (x,y)
+            double x = x_min + i * dx;
+            double y = y_max - j * dy;
+
+            auto color = acotado_2(x, y);
+            pixel_buffer[i + j * width] = color;
         }
     }
 }
