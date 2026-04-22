@@ -5,7 +5,7 @@ project(FractalJulia)
 find_package(fmt CONFIG REQUIRED)
 find_package(SFML COMPONENTS Graphics Window System REQUIRED)
 
-add_executable(fractal_julia main.cpp fractal_serial.cpp)
+add_executable(fractal_julia main.cpp palette.cpp fractal_serial.cpp fractal_simd.cpp)
 
 # Enlazamos las librerías a tu programa
 target_link_libraries(fractal_julia PRIVATE fmt::fmt SFML::Graphics SFML::Window SFML::System)

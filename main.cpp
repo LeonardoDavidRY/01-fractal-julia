@@ -2,6 +2,7 @@
 #include <complex>
 #include <fmt/core.h>
 #include "fractal_serial.h"
+#include "fractal_simd.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -19,9 +20,19 @@ double y_max = 1.0;
 std::complex<double> c(-0.7, 0.27015);
 // Textura
 uint32_t *pixel_buffer = nullptr;
+
+enum class runtime_type {
+  SERIAL_1 = 0,
+  SERIAL_2,
+  SIMD
+};
 int main()
 {
+
+    
     pixel_buffer = new uint32_t[WIDTH * HEIGHT];
+
+    runtime_type r_type = runtime_type::SERIAL_1; 
 
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}), "Julia Set - SFML");
@@ -39,6 +50,14 @@ int main()
     text.setPosition({10, 10});
     text.setStyle(sf::Text::Bold);
 
+    std::string options = "Options [1] Serial 1 [2] Serial 2, [3] SIMD  | UP/DOWN: Change Iterations";
+    sf::Text textOptions(font, options, 24);;
+    textOptions.setFillColor(sf::Color::White);
+    textOptions.setStyle(sf::Text::Bold);
+    textOptions.setPosition({10, window.getView().getSize().y -40});
+
+    
+  
     int frames = 0;
     int fps = 0;
     sf::Clock clock;
@@ -61,12 +80,41 @@ int main()
                 case sf::Keyboard::Scan::Down:
                     max_iteraciones -= 10;
                     break;
+                case sf::Keyboard::Scan::Num1:
+                    r_type = runtime_type::SERIAL_1;
+                    break;
+                case sf::Keyboard::Scan::Num2:
+                    r_type = runtime_type::SERIAL_2;
+                    break;
+                case sf::Keyboard::Scan::Num3:
+                    r_type = runtime_type::SIMD;
+                    break;
                 }
+                
+                  
             }
         }
         // dibujar:
         // julia_serial1(x_min, x_max, y_min, y_max, WIDTH, HEIGHT, pixel_buffer);
-        julia_serial2(x_min, x_max, y_min, y_max, WIDTH, HEIGHT, pixel_buffer);
+        std::string mode = "";
+        if (r_type == runtime_type::SERIAL_1)
+        {
+            julia_serial1(x_min, x_max, y_min, y_max, WIDTH, HEIGHT, pixel_buffer);
+            mode= "SERIAL_1";
+        }
+        else if (r_type == runtime_type::SERIAL_2)
+        {
+            
+            julia_serial2(x_min, x_max, y_min, y_max, WIDTH, HEIGHT, pixel_buffer);
+            mode= "SERIAL_2";
+        }
+        else if (r_type == runtime_type::SIMD)
+        {
+            
+            julia_simd(x_min, x_max, y_min, y_max, WIDTH, HEIGHT, pixel_buffer);
+            mode= "SIMD";
+        }
+        
 
         texture.update((const uint8_t *)pixel_buffer);
 
@@ -86,6 +134,7 @@ int main()
         {
             window.draw(sprite);
             window.draw(text);
+            window.draw(textOptions);
         }
         window.display();
     }
