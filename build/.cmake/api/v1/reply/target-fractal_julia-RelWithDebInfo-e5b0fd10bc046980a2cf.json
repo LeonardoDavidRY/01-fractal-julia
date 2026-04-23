@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Debug/fractal_julia.exe"
+			"path" : "RelWithDebInfo/fractal_julia.exe"
 		},
 		{
-			"path" : "Debug/fractal_julia.pdb"
+			"path" : "RelWithDebInfo/fractal_julia.pdb"
 		}
 	],
 	"backtrace" : 2,
@@ -36,7 +36,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 612,
+				"line" : 608,
 				"parent" : 1
 			},
 			{
@@ -53,7 +53,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-O2 -g -DNDEBUG"
 				}
 			],
 			"defines" : 
@@ -87,31 +87,27 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "",
+				"fragment" : "-O2 -g -DNDEBUG",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\debug\\lib\\libfmtd.dll.a",
+				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\lib\\libfmt.dll.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\debug\\lib\\libsfml-graphics-d.a",
+				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\lib\\libsfml-graphics.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\debug\\lib\\libsfml-window-d.a",
+				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\lib\\libsfml-window.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\debug\\lib\\libsfml-system-d.a",
+				"fragment" : "C:\\tools\\vcpkg-2026.03.18\\installed\\x64-mingw-dynamic\\lib\\libsfml-system.a",
 				"role" : "libraries"
 			},
 			{
