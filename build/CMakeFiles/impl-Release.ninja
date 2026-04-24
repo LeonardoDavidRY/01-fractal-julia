@@ -50,6 +50,8 @@ build CMakeFiles/fractal_julia.dir/Release/main.cpp.obj: CXX_COMPILER__fractal_j
   INCLUDES = -isystem C:/tools/vcpkg-2026.03.18/installed/x64-mingw-dynamic/include
   OBJECT_DIR = CMakeFiles\fractal_julia.dir\Release
   OBJECT_FILE_DIR = CMakeFiles\fractal_julia.dir\Release
+  TARGET_COMPILE_PDB = CMakeFiles\fractal_julia.dir\Release\
+  TARGET_PDB = Release\fractal_julia.pdb
 
 build CMakeFiles/fractal_julia.dir/Release/palette.cpp.obj: CXX_COMPILER__fractal_julia_unscanned_Release C$:/tools/P.Paralela/01-fractal-julia/palette.cpp || cmake_object_order_depends_target_fractal_julia_RELEASE
   DEFINES = -DFMT_SHARED -DCMAKE_INTDIR=\"Release\"
@@ -58,6 +60,8 @@ build CMakeFiles/fractal_julia.dir/Release/palette.cpp.obj: CXX_COMPILER__fracta
   INCLUDES = -isystem C:/tools/vcpkg-2026.03.18/installed/x64-mingw-dynamic/include
   OBJECT_DIR = CMakeFiles\fractal_julia.dir\Release
   OBJECT_FILE_DIR = CMakeFiles\fractal_julia.dir\Release
+  TARGET_COMPILE_PDB = CMakeFiles\fractal_julia.dir\Release\
+  TARGET_PDB = Release\fractal_julia.pdb
 
 build CMakeFiles/fractal_julia.dir/Release/fractal_serial.cpp.obj: CXX_COMPILER__fractal_julia_unscanned_Release C$:/tools/P.Paralela/01-fractal-julia/fractal_serial.cpp || cmake_object_order_depends_target_fractal_julia_RELEASE
   DEFINES = -DFMT_SHARED -DCMAKE_INTDIR=\"Release\"
@@ -66,6 +70,8 @@ build CMakeFiles/fractal_julia.dir/Release/fractal_serial.cpp.obj: CXX_COMPILER_
   INCLUDES = -isystem C:/tools/vcpkg-2026.03.18/installed/x64-mingw-dynamic/include
   OBJECT_DIR = CMakeFiles\fractal_julia.dir\Release
   OBJECT_FILE_DIR = CMakeFiles\fractal_julia.dir\Release
+  TARGET_COMPILE_PDB = CMakeFiles\fractal_julia.dir\Release\
+  TARGET_PDB = Release\fractal_julia.pdb
 
 build CMakeFiles/fractal_julia.dir/Release/fractal_simd.cpp.obj: CXX_COMPILER__fractal_julia_unscanned_Release C$:/tools/P.Paralela/01-fractal-julia/fractal_simd.cpp || cmake_object_order_depends_target_fractal_julia_RELEASE
   DEFINES = -DFMT_SHARED -DCMAKE_INTDIR=\"Release\"
@@ -74,6 +80,8 @@ build CMakeFiles/fractal_julia.dir/Release/fractal_simd.cpp.obj: CXX_COMPILER__f
   INCLUDES = -isystem C:/tools/vcpkg-2026.03.18/installed/x64-mingw-dynamic/include
   OBJECT_DIR = CMakeFiles\fractal_julia.dir\Release
   OBJECT_FILE_DIR = CMakeFiles\fractal_julia.dir\Release
+  TARGET_COMPILE_PDB = CMakeFiles\fractal_julia.dir\Release\
+  TARGET_PDB = Release\fractal_julia.pdb
 
 
 # =============================================================================
@@ -89,9 +97,10 @@ build Release/fractal_julia.exe: CXX_EXECUTABLE_LINKER__fractal_julia_Release CM
   OBJECT_DIR = CMakeFiles\fractal_julia.dir\Release
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\tools\P.Paralela\01-fractal-julia\build && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/tools/vcpkg-2026.03.18/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/tools/P.Paralela/01-fractal-julia/build/Release/fractal_julia.exe -installedDir C:/tools/vcpkg-2026.03.18/installed/x64-mingw-dynamic/bin -OutVariable out"
   PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\fractal_julia.dir\Release\
   TARGET_FILE = Release\fractal_julia.exe
   TARGET_IMPLIB = Release\libfractal_julia.dll.a
-  TARGET_PDB = fractal_julia.exe.dbg
+  TARGET_PDB = Release\fractal_julia.pdb
 
 build fractal_julia.exe$:Release: phony Release/fractal_julia.exe
 

@@ -81,12 +81,15 @@ int main()
                     max_iteraciones -= 10;
                     break;
                 case sf::Keyboard::Scan::Num1:
+                case sf::Keyboard::Scan::Numpad1:
                     r_type = runtime_type::SERIAL_1;
                     break;
                 case sf::Keyboard::Scan::Num2:
+                case sf::Keyboard::Scan::Numpad2:
                     r_type = runtime_type::SERIAL_2;
                     break;
                 case sf::Keyboard::Scan::Num3:
+                case sf::Keyboard::Scan::Numpad3:
                     r_type = runtime_type::SIMD;
                     break;
                 }
