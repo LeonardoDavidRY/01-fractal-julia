@@ -127,7 +127,7 @@ int main()
         {
             fps = frames;
             frames = 0;
-            clock.reset();
+            clock.restart();
         }
 
         auto msg = fmt::format("Julia Set: Iteraciones:{}, FPS: {}, Mode {}", max_iteraciones, fps, mode);
