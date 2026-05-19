@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.20)
 project(FractalJulia)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2 -fopenmp")
 
 # Le decimos a CMake que busque fmt y SFML
 find_package(fmt CONFIG REQUIRED)
 find_package(SFML COMPONENTS Graphics Window System REQUIRED)
 
-add_executable(fractal_julia main.cpp palette.cpp fractal_serial.cpp fractal_simd.cpp)
+add_executable(fractal_julia main.cpp palette.cpp fractal_serial.cpp fractal_simd.cpp fractal_openmp.cpp)
 
 # Enlazamos las librerías a tu programa
 target_link_libraries(fractal_julia PRIVATE fmt::fmt SFML::Graphics SFML::Window SFML::System)
